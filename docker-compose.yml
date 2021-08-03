@@ -1,0 +1,44 @@
+version: '2'
+
+services:
+  php:
+    build: ./${PHP_VERSION}
+    container_name: php-doc2pdf
+    volumes_from:
+      - source
+    ports:
+      - '${INTERFACE}:9000:9000'
+    networks:
+      - doc2pdf-network
+    restart: always
+
+  source:
+    build: ./www
+    container_name: source-doc2pdf
+    volumes:
+      - ./logs/${WEB_SERVER_TYPE}:/var/log/${WEB_SERVER_TYPE}
+      - ./logs/php:/var/log/php
+      - ${SITE_PATH}:/var/www/project
+    networks:
+      - doc2pdf-network
+
+  webserver:
+    build: ./${WEB_SERVER_TYPE}
+    container_name: webserver-doc2pdf
+    depends_on:
+      - source
+    volumes_from:
+      - source
+    ports:
+      - '${INTERFACE}:8888:80'
+    links:
+      - php
+    networks:
+      - doc2pdf-network
+    restart: always
+
+networks:
+  doc2pdf-network:
+    driver: bridge
+    ipam:
+      driver: default
