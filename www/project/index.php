@@ -30,8 +30,8 @@ for($i = 0; $i < count($test_files); $i++) {
 
     $convertor->convert($srcFile, $dstFile);
 
-    echo " ---> " . $dstFile . ": " . filesize($dstFile) . "<br>";
-    echo " time convert: " . (microtime(true) - $start_time);
+    echo " ---> " . $dstFile . ": " . filesize($dstFile) . " ";
+    echo " time convert: " . (microtime(true) - $start_time) . "<br>";
 }
 
 // Test time line
