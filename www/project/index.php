@@ -24,13 +24,13 @@ for($i = 0; $i < count($test_files); $i++) {
     $srcFile = $test_files[$i];
     $dstFile = $convert_path . '/document' . $i . '.pdf';
 
-    echo $srcFile . " " . filesize($srcFile);
+    echo $srcFile . ": " . filesize($srcFile);
 
     $convertor = ConvertorFactory::factory($srcFile);
 
     $convertor->convert($srcFile, $dstFile);
 
-    echo " ---> " $dstFile . " " . filesize($dstFile) . "<br>";
+    echo " ---> " . $dstFile . ": " . filesize($dstFile) . "<br>";
     echo " time convert: " . (microtime(true) - $start_time);
 }
 
