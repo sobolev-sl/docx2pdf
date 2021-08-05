@@ -12,7 +12,7 @@ $test_files = [
 	'files/document3.doc',
 	'files/document4.docx',
 	'files/document5.doc',
-        'files/document6.docx'
+    'files/document6.docx'
 ];
 
 $convert_path = 'upload';
@@ -24,11 +24,15 @@ for($i = 0; $i < count($test_files); $i++) {
     $srcFile = $test_files[$i];
     $dstFile = $convert_path . '/document' . $i . '.pdf';
 
+    echo $srcFile . " " . filesize($srcFile);
+
     $convertor = ConvertorFactory::factory($srcFile);
 
     $convertor->convert($srcFile, $dstFile);
 
+    echo " ---> " $dstFile . " " . filesize($dstFile) . "<br>"
+    echo " time convert: " . (microtime(true) - $start_time);
 }
 
 // Test time line
-echo "Время работы" . (microtime(true) - $start_time);
+echo "<br> Общее время работы" . (microtime(true) - $start_time);
