@@ -7,7 +7,12 @@ use Convertor\ConvertorFactory;
 /**/
 $test_files = [
 	'files/document0.docx',
-	'files/document1.doc'
+	'files/document1.doc',
+	'files/document2.docx',
+	'files/document3.doc',
+	'files/document4.docx',
+	'files/document5.doc',
+        'files/document6.docx'
 ];
 
 $convert_path = 'upload';
